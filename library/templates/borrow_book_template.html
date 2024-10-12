@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrowing Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .book-list {
+            margin: 20px 0;
+            padding: 0;
+            list-style-type: none;
+            background:grey;
+        }
+        .book-list li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .book-list li:last-child {
+            border-bottom: none;
+        }
+        .return-date {
+            font-weight: bold;
+            color: #d9534f;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Borrowing Confirmation</h1>
+        <p>Dear {{ user_name }},</p>
+        <p>You have successfully borrowed the following books from our library:</p>
+
+        <ul class="book-list">
+            {% for book in books %}
+            <li>{{ book.title }} by {{ book.author.name }} (Category: {{ book.category.name }})</li>
+            <p class="return-date">{{ book.return_date }}</p>
+
+            {% endfor %}
+        </ul>
+
+        <p>Please return the books by the following date:</p>
+       
+
+        <p>Late returns will incur a penalty fee. If you have any questions, feel free to contact us.</p>
+
+        <p>Thank you for using our library services!</p>
+
+        <div class="footer">
+            <p>Library Management System</p>
+            <p>&copy; {{ current_year }} Library Inc. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

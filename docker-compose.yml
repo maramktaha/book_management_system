@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: django_app:latest
+    container_name: book_managemenr_system
+    volumes:
+      - .:/app  
+      - /root/.env
+    restart: always
+    environment:
+      - ENV_FILE=/app/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis  # Ensure Redis starts before Django
+      - django_cron 
+  
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - redis-data:/data
+
+  django_cron:
+    build:
+      context: .
+      dockerfile: Dockerfile  
+    container_name: django_cron_service
+    restart: always
+    command: ["python3", "manage.py", "runcrons"]
+
+volumes:
+  redis-data:
+    driver: local
