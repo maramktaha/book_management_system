@@ -36,7 +36,7 @@ A **Django-based Book Management System** that allows users to manage libraries,
    ```bash
    git clone https://github.com/yourusername/book-management-system.git
    cd book-management-system
-Docker Setup
+🐳 Docker Setup
 
 To run the application in a containerized environment:
 
@@ -57,3 +57,5 @@ Collect static files:
 bash
 
 docker-compose exec django python manage.py collectstatic --noinput
+
+Access the application: The app will be available at http://localhost:8000.
