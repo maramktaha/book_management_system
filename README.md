@@ -4,7 +4,7 @@ A **Django-based Book Management System** that allows users to manage libraries,
 
 ## Features
 
-- **User Authentication**: Registration, login, and password recovery.
+- **User Authentication**: Registration, login.
 - **Library Management**: Add and manage libraries, books, authors, and categories.
 - **Book Borrowing/Returning**: Borrow and return multiple books with real-time availability updates.
 - **Real-time Notifications**: Receive real-time updates on book availability via WebSockets (Django Channels).
@@ -17,8 +17,6 @@ A **Django-based Book Management System** that allows users to manage libraries,
 - **Backend**: Django 4.2+
 - **Database**: PostgreSQL with PostGIS for geographic functionality
 - **Real-time**: Django Channels (WebSockets)
-- **Task Scheduling**: django-cron for scheduled notifications and reminders
-- **Cache**: Redis
 - **Containerization**: Docker and Docker Compose
 
 ## Installation
