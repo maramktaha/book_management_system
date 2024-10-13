@@ -1,42 +1,59 @@
-Book Management System
+# Book Management System
 
-A Django-based Book Management System that allows users to manage libraries, books, authors, and categories. It supports user registration, login, borrowing and returning of books, real-time notifications for book availability, and penalties for overdue returns. The project is Dockerized for easy setup and deployment.
-Table of Contents
+A **Django-based Book Management System** that allows users to manage libraries, books, authors, and categories. The system supports user registration, borrowing, returning books, real-time notifications for book availability, and enforcement of overdue penalties. The project is containerized with Docker for easy deployment and setup.
 
-    Features
-    Tech Stack
-    Installation
-    Environment Variables
-    Running Locally
-    Docker Setup
-    API Endpoints
-    Contributing
-    License
+## Features
 
-Features
+- **User Authentication**: Registration, login, and password recovery.
+- **Library Management**: Add and manage libraries, books, authors, and categories.
+- **Book Borrowing/Returning**: Borrow and return multiple books with real-time availability updates.
+- **Real-time Notifications**: Receive real-time updates on book availability via WebSockets (Django Channels).
+- **Penalties**: Automatically applies penalties for overdue book returns.
+- **Distance Calculation**: Calculate the distance between users and libraries.
+- **Email Notifications**: Send confirmation emails and reminders for overdue returns.
 
-    User Authentication: Users can register, log in, and recover their passwords.
-    Library Management: Manage multiple libraries, books, authors, and categories.
-    Book Borrowing and Returning: Users can borrow and return multiple books at once, with real-time availability updates.
-    Real-time Notifications: Users are notified about book availability through WebSockets.
-    Borrowing Limits: Users can borrow a limited number of books (configurable, e.g., 3 books at a time).
-    Overdue Penalties: Automatic penalties for late book returns.
-    Distance Calculation: Calculates distances between users and libraries.
-    Email Notifications: Sends email confirmations and reminders to users.
+## Technology Stack
 
-Tech Stack
+- **Backend**: Django 4.2+
+- **Database**: PostgreSQL with PostGIS for geographic functionality
+- **Real-time**: Django Channels (WebSockets)
+- **Task Scheduling**: django-cron for scheduled notifications and reminders
+- **Cache**: Redis
+- **Containerization**: Docker and Docker Compose
 
-    Backend: Django 4.2+
-    Database: PostgreSQL with PostGIS
-    Real-time: Django Channels (WebSockets)
-    Task Scheduling: Django-cron for scheduled jobs
-    Containerization: Docker & Docker Compose
-    Cache/Message Broker: Redis
+## Installation
 
-Installation
-Prerequisites
+### Prerequisites
 
-    Python 3.10+
-    Docker & Docker Compose
-    PostgreSQL with PostGIS
-    Redis
+- Python 3.10+
+- Docker & Docker Compose
+- PostgreSQL with PostGIS extension
+- Redis
+
+### Steps to Set Up Locally
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/book-management-system.git
+   cd book-management-system
+Docker Setup
+
+To run the application in a containerized environment:
+
+    Build and start Docker containers:
+
+    bash
+
+docker-compose up --build
+
+Run migrations inside the container:
+
+bash
+
+docker-compose exec django python manage.py migrate
+
+Collect static files:
+
+bash
+
+docker-compose exec django python manage.py collectstatic --noinput
