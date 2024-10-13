@@ -15,6 +15,7 @@ RUN apt-get install -y gdal-bin \
 
 
 RUN pip3 install GDAL==3.6.2
+RUN apt-get update && apt-get install -y postgresql-client
 
 COPY requirements.txt /app/
 # Install Python dependencies

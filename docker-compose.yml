@@ -1,40 +1,39 @@
 version: '3.8'
 services:
+  db:
+    image: postgis/postgis:17-3.4 
+    ports:
+       - "5482:5432"
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: book        
+      POSTGRES_USER: bit68        
+      POSTGRES_PASSWORD: bit68 
+    restart: always
+
   django:
     build:
       context: .
       dockerfile: Dockerfile
     image: django_app:latest
-    container_name: book_managemenr_system
+    container_name: book_management_system
     volumes:
       - .:/app  
       - /root/.env
-    restart: always
+      - /app/staticfiles:/app/staticfiles
     environment:
       - ENV_FILE=/app/.env
+      - DATABASE_URL=postgres://bit68:bit68@db:5432/book
+      - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - "8000:8000"
     depends_on:
-      - redis  # Ensure Redis starts before Django
-      - django_cron 
-  
+      - redis
+      - db
+
   redis:
     image: redis:latest
     container_name: redis
     ports:
       - "6379:6379"
     restart: always
-    volumes:
-      - redis-data:/data
-
-  django_cron:
-    build:
-      context: .
-      dockerfile: Dockerfile  
-    container_name: django_cron_service
-    restart: always
-    command: ["python3", "manage.py", "runcrons"]
-
-volumes:
-  redis-data:
-    driver: local

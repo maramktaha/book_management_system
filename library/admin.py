@@ -7,8 +7,8 @@ from django.contrib.gis import admin as gadmin
 from modeltranslation.admin import TranslationAdmin
 
 
-admin.site.register(Book)
-admin.site.register(Author)
+admin.site.register(Book,list_displau=['id','name'])
+admin.site.register(Author,list_displau=['id','name'])
 admin.site.register(LibraryTransaction)
 admin.site.register(BorrowReturnBook)
 
